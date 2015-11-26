@@ -67,11 +67,20 @@ void showHistogram(Mat& img)
 }
 
 // Test the `showHistogram()` function above
-int main()
+int main(int argc, char **argv)
 {
-	Mat src = imread("c:/users/nash/desktop/assets/lena.jpg");
-	if (src.empty())
+	if(argc!=2)
+	{
+		cout << "Usage: $ ./ex filename" << endl;
 		return -1;
+	}
+	
+	Mat src = imread(argv[1]);
+	if (src.empty())
+	{
+		cout << "File error" << endl;
+		return -1;
+	}
 	showHistogram(src);
 	imshow("src", src);
 	waitKey(0);
